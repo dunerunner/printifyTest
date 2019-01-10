@@ -1,0 +1,31 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "customer": "Jim Raynor",
+      "created": 1546815867189,
+      "revenue": 5.15,
+      "cost": -15.15,
+      "price": 10,
+      "fulfillment": "In production"
+    },
+    {
+      "id": 2,
+      "customer": "Sarah Kerrigan",
+      "created": 1546815867189,
+      "revenue": 7.15,
+      "cost": -17.15,
+      "price": 10,
+      "fulfillment": "Quality Control"
+    },
+    {
+      "id": 3,
+      "customer": "Tychus Findlay",
+      "created": 1546815867189,
+      "revenue": 7.15,
+      "cost": -17.15,
+      "price": 10,
+      "fulfillment": "Quality Control"
+    }
+  ]
+}

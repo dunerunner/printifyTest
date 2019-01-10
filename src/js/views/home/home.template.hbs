@@ -1,0 +1,68 @@
+<div class="row mt-5 align-items-center">
+    <div class="col-6">
+        <h1>Orders</h1>
+    </div>
+    <div class="col-6">
+        <button type="button" class="btn btn-primary float-right" id="importBtn" data-toggle="modal" data-target="#importModal">Import orders</button>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Created</th>
+                <th scope="col">Revenue $</th>
+                <th scope="col">Cost $</th>
+                <th scope="col">Price $</th>
+                <th scope="col">Fulfillment</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each orders}}
+            <tr>
+                <th scope="row">#{{id}}</th>
+                <td>{{customer}}</td>
+                <td>{{formatdate created}}</td>
+                <td>+{{revenue}}</td>
+                <td>{{cost}}</td>
+                <td>+{{price}}</td>
+                <td>{{fulfillment}}</td>
+            </tr>
+            {{~/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <nav aria-label="Orders navigation" class="float-right">
+            <ul class="pagination">
+                <li class="page-item page-prev"><a class="page-link" href="#">Previous</a></li>
+                {{#times pages}}
+                <li class="page-item page-number {{#ifEquals this ../currentPage}} active {{/ifEquals}}"><a class="page-link" href="#">{{this}}</a></li>
+                {{/times}}
+                <li class="page-item page-next"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="wizardContainer"></div>
+            </div>
+        </div>
+    </div>
+</div>

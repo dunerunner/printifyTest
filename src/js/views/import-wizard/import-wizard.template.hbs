@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-4 {{#ifEquals step 1}} font-weight-bold {{/ifEquals}}">1. Find order</div>
+    <div class="col-4 {{#ifEquals step 2}} font-weight-bold {{/ifEquals}}">2. Prepare products</div>
+    <div class="col-4 {{#ifEquals step 3}} font-weight-bold {{/ifEquals}}">3. Confirm order</div>
+</div>
+
+{{#ifEquals step 1}}
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+                <i class="fas fa-search"></i>
+            </span>
+            </div>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search orders"
+                   aria-label="Search orders"
+                   aria-describedby="basic-addon1" value="{{dataModel.query}}">
+        </div>
+    </div>
+</div>
+{{/ifEquals}}
+
+{{#ifNotEquals step 3}}
+<div class="row mt-3">
+    <div class="col-12">
+        {{#if dataModel.selectedOrder}}
+        <div id="productsTable"></div>
+        {{/if}}
+
+        {{#unless dataModel.selectedOrder}}
+        <div id="ordersTable"></div>
+        {{/unless}}
+    </div>
+</div>
+{{/ifNotEquals}}
+
+{{#ifEquals step 3}}
+<div class="row mt-3">
+    <div class="col-12">
+        <ul class="list-group">
+            {{#each dataModel.selectedProducts}}
+            <li class="list-group-item"><i class="fas fa-cat"></i> <span class="ml-3">{{variant}}</span></li>
+            {{~/each}}
+        </ul>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-6">
+        <h5>Shipping</h5>
+
+        <div class="mt-3">
+            {{dataModel.selectedOrder.company}}
+        </div>
+        <div class="mt-3">
+            {{dataModel.selectedOrder.address}}
+        </div>
+    </div>
+    <div class="col-6">
+        <h5>Production subtotal</h5>
+
+        <div class="mt-3">
+            1000$
+        </div>
+    </div>
+</div>
+{{/ifEquals}}
+
+<div class="row mt-3">
+    {{#if dataModel.selectedOrder}}
+    <div class="col-12 clearfix">
+        <div class="btn-group float-right">
+            <button type="button" class="btn btn-secondary" id="previousBtn">Previous</button>
+
+            {{#ifNotEquals step 3}}
+            <button type="button" class="btn btn-primary" id="nextBtn" {{#unless dataModel.selectedProducts.length}}
+                    disabled {{/unless}}>Next</button>
+            {{/ifNotEquals}}
+
+            {{#ifEquals step 3}}
+            <button type="button" class="btn btn-primary" id="cnsBtn" data-toggle="modal"
+                    data-target="#importModal">Confirm and Ship</button>
+            {{/ifEquals}}
+        </div>
+    </div>
+    {{/if}}
+
+    {{#unless dataModel.selectedOrder}}
+    <div class="col-12">
+        <button type="button" class="btn btn-secondary float-right" id="cancelBtn" data-toggle="modal"
+                data-target="#importModal">Cancel
+        </button>
+    </div>
+    {{/unless}}
+</div>
