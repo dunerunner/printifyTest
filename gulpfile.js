@@ -54,8 +54,8 @@ function scripts() {
         .require('./src/js/index.js', {entry: true})
         .bundle()
         .pipe(source('bundle.js'))
-        // .pipe(buffer())
-        // .pipe(uglify())
+        .pipe(buffer())
+        .pipe(uglify())
         .pipe(dest('./dist/scripts'))
         .pipe(livereload());
 }
